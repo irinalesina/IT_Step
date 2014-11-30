@@ -3,11 +3,13 @@
 
 int main()
 {
-    double a, b;
-    printf("Enter 1 number a = \n");
-    scanf("%lf",&a);
-    printf("Enter 2 number b = \n");
-    scanf("%lf",&b);
-    printf("%f %f", a, b);
+    printf("And The Moon And The Stars And The World\n"
+           "       by Charles Bukowski\n\n"
+           "Long walks at night--\n"
+           "that’s what good for the soul:\n"
+           "peeking into windows\n"
+           "watching tired housewives\n"
+           "trying to fight off\n"
+           "their beer-maddened husbands.\n");
     return 0;
 }
