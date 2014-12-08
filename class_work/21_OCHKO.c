@@ -34,13 +34,13 @@ int main()
     int comp_will_take = 1;
     if(computer_score > 11)
     {
-        comp_will_take = 21 - computer_score < rand()%21;
+        comp_will_take = 21 - computer_score > rand()%21;
     }
     if(comp_will_take)
     {
-        computer_score = rand()%11+1;
+        computer_score += rand()%11+1;
     }
-    //-------
+    //-------mistake
     while(answer == 'y' && human_score < 21 )
     {
         printf("Your score = %d\n", human_score);
@@ -54,13 +54,15 @@ int main()
     //-------
     while(comp_will_take && computer_score < 21)
     {
+        printf("we are here\n");
+        comp_will_take = 1;
         if(computer_score > 11)
         {
-            comp_will_take = 21 - computer_score < rand()%21;
+            comp_will_take = 21 - computer_score > rand()%21;
         }
         if(comp_will_take)
         {
-            computer_score = rand()%11+1;
+            computer_score += rand()%11+1;
         }
     }
     if(human_score == 21)
