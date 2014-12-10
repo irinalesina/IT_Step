@@ -17,7 +17,7 @@ int main()
 
     //enter numbers
 
-    unsigned int max = 0, min = 0xFFFFFFFF, n;
+    int max = 0, min = 0x7FFFFFFF, n;
     for(n = 1; n <= amount_of_numbers; n++)
     {
         int number;
@@ -28,7 +28,7 @@ int main()
         min = number < min ? number : min;
 
     }
-    printf("max = %u\nmin = %u\n", max, min);
+    printf("max = %d\nmin = %d\n", max, min);
 
     return 0;
 }
