@@ -16,11 +16,12 @@ int main()
     } while(amount_of_numbers < 2);
 
     //enter numbers
-
-    int max = 0, min = 0x7FFFFFFF, n;
-    for(n = 1; n <= amount_of_numbers; n++)
+    int number, n = 1;
+    printf("%d, Enter a number: ", n);
+    scanf("%d", &number);
+    int max = number, min = number;
+    for(n = 2; n <= amount_of_numbers; n++)
     {
-        int number;
         printf("%d, Enter a number: ", n);
         scanf("%d", &number);
 
