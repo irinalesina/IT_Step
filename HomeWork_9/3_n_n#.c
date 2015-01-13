@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int contur(int);
+void contur(int);
 int main()
 {
     int n;
@@ -11,7 +11,7 @@ int main()
     return 0;
 }
 int nod(int, int);
-int contur(int n)
+void contur(int n)
 {
     int i, j;
     for(i = 0; i < n; i++)
