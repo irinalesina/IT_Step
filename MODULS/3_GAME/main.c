@@ -6,10 +6,11 @@
 int main()
 {
     srand(time(NULL));
-    int computer_score = 0, user_score = 0, score, answer = 1;
+    int score, answer = 1;
     int i, j;
     while(answer)
     {
+        int computer_score = 0, user_score = 0;
         for(i = 0; i < 2; i++)
         {
             for(j = 0; j < 2; j++)
