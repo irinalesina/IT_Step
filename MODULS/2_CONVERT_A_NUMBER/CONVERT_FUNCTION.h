@@ -1,0 +1,6 @@
+#ifndef CONVERT_FUNCTION_H_INCLUDED
+#define CONVERT_FUNCTION_H_INCLUDED
+
+void Convert(int, int);
+
+#endif // CONVERT_FUNCTION_H_INCLUDED
