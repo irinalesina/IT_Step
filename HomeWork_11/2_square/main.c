@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "animation.h"
+#include "../../class_work/windows_vs_linux/compatibity.h"
 
 int main()
 {
