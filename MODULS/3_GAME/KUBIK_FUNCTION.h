@@ -1,0 +1,6 @@
+#ifndef KUBIK_FUNCTION_H_INCLUDED
+#define KUBIK_FUNCTION_H_INCLUDED
+
+void Kubik(int);
+
+#endif // KUBIK_FUNCTION_H_INCLUDED
