@@ -1,0 +1,6 @@
+#ifndef FOUND_LONGEST_SITE_WITH_ZERO_H_INCLUDED
+#define FOUND_LONGEST_SITE_WITH_ZERO_H_INCLUDED
+
+int LongestSiteWithZero(int*array, int size_of_array);
+
+#endif // FOUND_LONGEST_SITE_WITH_ZERO_H_INCLUDED
