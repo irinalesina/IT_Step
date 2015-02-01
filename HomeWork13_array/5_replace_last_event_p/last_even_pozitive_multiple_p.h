@@ -1,0 +1,6 @@
+#ifndef LAST_EVEN_POZITIVE_MULTIPLE_P_H_INCLUDED
+#define LAST_EVEN_POZITIVE_MULTIPLE_P_H_INCLUDED
+
+int LastEvenPozitiveP(int*array, int size_of_array, int p);
+
+#endif // LAST_EVEN_POZITIVE_MULTIPLE_P_H_INCLUDED
