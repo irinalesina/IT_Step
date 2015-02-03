@@ -10,6 +10,14 @@ void InputArray(int* array, int size_of_array)
     }
 }
 
+void InputCharArray(char array[], int size_of_array)
+{
+    for(i = 0; i < size_of_array; i++)
+    {
+        scanf("%c", &array[i]);
+    }
+}
+
 void OutputArray(int* array, int size_of_array)
 {
     for(i = 0; i < size_of_array; i++)
