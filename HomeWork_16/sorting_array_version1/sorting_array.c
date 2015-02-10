@@ -11,9 +11,7 @@ void FillArray(int line, int column)
         for(j = 0; j < column; j++)
         {
             array[i][j] = rand() % 100;
-            printf("%2d ", array[i][j]);
         }
-        printf("\n");
     }
 }
 
@@ -52,8 +50,6 @@ void SortingArray(int line, int column)
 
 void OutputArray(int line, int column)
 {
-    printf("\nArray after sorting:\n");
-
     for(i = 0; i < line; i++)
     {
         for(j = 0; j < column; j++)

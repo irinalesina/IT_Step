@@ -11,7 +11,9 @@ int main()
     scanf("%d", &column);
 
     FillArray(line, column);
+    OutputArray(line, column);
     SortingArray(line, column);
+    printf("\nArray after sorting:\n");
     OutputArray(line, column);
 
     return 0;
