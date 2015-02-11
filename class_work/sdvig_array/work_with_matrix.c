@@ -18,7 +18,7 @@ void FillArrayRandom(int array[][100], int line, int column)
     }
 }
 
-static int helper;
+static int helper[100];
 
 /*void ShiftArrayUD(int array[][100], int line, int column, int shift, int position)
 {
@@ -38,28 +38,34 @@ static int helper;
 
 void ShiftArrayRL(int array[][100], int line, int column, int shift, int position)
 {
-    shift %= column;
+   // shift %= column;
     if(shift == 0)
     {
         return;
     }
-
-    for(i = 0; i < line; i++)
+    if(position == 3)
     {
-        if(position == 3) //right
+
+    }
+    else
+    {
+        for(i = 0; i < line; i++)
         {
-            for(int k = 0; k < shift; ++k)
+            printf(" l %d",i);
+            for(j = 0; j < shift; j++)
             {
-                j = 0;
-                helper = array[i][j];
+                helper[j] = array[i][j];
+            }
+            for(j = 0; j < column - shift; j++)
+            {
+                array[i][j] = array[i][j + shift];
+            }
+            for(j = 0; j < shift; j++)
+            {
+                array[i][column - shift + j] = helper[j];
             }
         }
-        else //left
-        {
-            helper = array[i][j];
-            array[i][j] = array[i][j > column - shift ? j -  : column - shift + j];
-            array[i][j < shift ? column - shift + j : j - shift] = helper;
-        }
+
     }
 }
 
