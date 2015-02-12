@@ -1,0 +1,6 @@
+#ifndef AMOUNT_OF_ELEMENTS_FOUND_SOMETIMES_H_INCLUDED
+#define AMOUNT_OF_ELEMENTS_FOUND_SOMETIMES_H_INCLUDED
+
+int AmountOfElementsFoundSometimes(int*array, int ssize_of_array);
+
+#endif // AMOUNT_OF_ELEMENTS_FOUND_SOMETIMES_H_INCLUDED
