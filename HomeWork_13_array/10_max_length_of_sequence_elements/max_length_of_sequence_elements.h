@@ -1,0 +1,6 @@
+#ifndef MAX_LENGTH_OF_SEQUENCE_ELEMENTS_H_INCLUDED
+#define MAX_LENGTH_OF_SEQUENCE_ELEMENTS_H_INCLUDED
+
+MaxLengthOfSequenceElements(int*array, int size_of_array);
+
+#endif // MAX_LENGTH_OF_SEQUENCE_ELEMENTS_H_INCLUDED
