@@ -11,6 +11,10 @@ int MaxLengthOfSequenceElements(int*array, int size_of_array)
             {
                 length_work++;
             }
+            else
+            {
+                break;
+            }
         }
         length = length > length_work ? length : length_work;
     }
