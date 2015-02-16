@@ -15,7 +15,8 @@ void InitialiseProgram();
 enum Colors {normal, green, red}; //собственный тип данных colors
 
 char close_cell[4] = "\342\227\206"; //символ ромбик для закрытых коеток
-char flagged_cell[4] = "\342\227\204"; //треугольник для возможных бомб
+char flagged_cell[4] = "\342\232\221"; //треугольник для возможных бомб
+char bomb_cell[4] = "\342\230\242";
 
 enum State {opened, hidden, flagged}; // 0 1 2
 
@@ -23,7 +24,7 @@ enum State {opened, hidden, flagged}; // 0 1 2
 #define COLUMNS 17
 
 void FieldsInit(int fog_of_war[][COLUMNS], int field[][COLUMNS], int rows, int columns);
-void FieldsDraw(int fog_of_war[][COLUMNS], int field[][COLUMNS], int rows, int columns);
+void FieldsDraw(int fog_of_war[][COLUMNS], int field[][COLUMNS], int rows, int columns, int curI, int curJ);
 
 int main()
 {
@@ -38,7 +39,7 @@ int main()
     fog_of_war[2][5]=opened;
     fog_of_war[2][6]=flagged;
 
-    FieldsDraw(fog_of_war, field, ROWS, COLUMNS);
+    FieldsDraw(fog_of_war, field, ROWS, COLUMNS, 3, 7);
 
     getch();
     endwin();
@@ -120,7 +121,7 @@ void Inc(int field[][COLUMNS], int rows, int columns, int i, int j)
 }
 
 
-void FieldsDraw(int fog_of_war[][COLUMNS], int field[][COLUMNS], int rows, int columns)
+void FieldsDraw(int fog_of_war[][COLUMNS], int field[][COLUMNS], int rows, int columns, int curI, int curJ)
 {
     int i, j;
     for(i = 0; i < rows; i++)
@@ -128,15 +129,23 @@ void FieldsDraw(int fog_of_war[][COLUMNS], int field[][COLUMNS], int rows, int c
         for(j = 0; j < columns; j++)
         {
             move(i, j);
+            if(i==curI && j==curJ)
+            {
+                attron(A_REVERSE);
+            }
             if(fog_of_war[i][j] == opened)
             {
                 if(field[i][j] == 0)
                 {
                     printw(" ");
                 }
-                else
+                else if(field[i][j]<9)
                 {
                     printw("%d", field[i][j]);
+                }
+                else
+                {
+                    printw("%s", bomb_cell);
                 }
             }
             else if(fog_of_war[i][j] == hidden)
@@ -152,6 +161,10 @@ void FieldsDraw(int fog_of_war[][COLUMNS], int field[][COLUMNS], int rows, int c
                 endwin();
                 fprintf(stderr, "interanl error: \nimposible value for fog.\n");
                 exit(1);
+            }
+            if(i==curI && j==curJ)
+            {
+                attroff(A_REVERSE);
             }
         }
     }
