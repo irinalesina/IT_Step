@@ -10,21 +10,26 @@
 
 void TreatSigWinch(int signo);
 void InitialiseProgram();
-//enum Colors{normal, green, red};
+enum Colors{normal, green, red}; //собственный тип данных colors
 
 int main()
 {
     InitialiseProgram();
 
-    attron(COLOR_PAIR(1));
+    attron(COLOR_PAIR(normal));
     printw("Hello world!");
-    attroff(COLOR_PAIR(1));
+    attroff(COLOR_PAIR(normal));
     refresh(); //обновить экран чтобы все поолучилось
     getch(); // получить код клавиши
     attron(A_BLINK|A_BOLD);
     move(0, 6);
-    printw("wor");
-    attroff(COLOR_PAIR(1));
+    attron(COLOR_PAIR(green));
+    printw("world");
+    attroff(COLOR_PAIR(green));
+    move(0, 0);
+    attron(COLOR_PAIR(red));
+    printw("Hello");
+    attroff(COLOR_PAIR(red));
     refresh();
     getch();
     endwin();
@@ -46,10 +51,10 @@ void InitialiseProgram()
     noecho();
     curs_set(0);
     start_color();
-    init_pair(1, COLOR_GREEN, COLOR_BLACK);
-    //init_pair(normal, COLOR_WHITE, COLOR_BLACK);
-    //init_pair(green, COLOR_GREEN, COLOR_BLACK);
-    //init_pair(red, COLOR_RED, COLOR_BLACK);
+    //init_pair(1, COLOR_GREEN, COLOR_BLACK);
+    init_pair(normal, COLOR_WHITE, COLOR_BLACK);
+    init_pair(green, COLOR_GREEN, COLOR_BLACK);
+    init_pair(red, COLOR_RED, COLOR_BLACK);
 }
 
 void TreatSigWinch(int signo)
