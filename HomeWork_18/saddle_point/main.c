@@ -16,6 +16,7 @@ int main()
     scanf("%d%d", &m, &n);
 
     //выделение памяти под матрицу
+    //указатель на указатель
     matrix = (int**)malloc(m*sizeof(int*));//под указатели
 
     //обработка ошибок и освобождение выделенной памяти
@@ -24,19 +25,36 @@ int main()
         fprintf(stderr, "No free memory!\n");
         exit(1);
     }
+
+    //выделение памяти на массив результата
+    result = (int*)malloc(m*n*2*sizeof(int));
+
+    //обработка ошибок
+    if(result = NULL)
+    {
+        free(matrix);
+        matrix = NULL;
+        fprintf(stderr, "No free memory!\n");
+        exit(1);
+    }
+
+    //выделение памяти под указатели(одномерные массивы)
     for(i = 0; i < m; i++)
     {
         matrix[i] = NULL;
-        matrix[i] /* int* */ = (int*)malloc(n*sizeof(int));//под элементы
+        matrix[i] /* int* */ = (int*)malloc(n*sizeof(int));
+        //обработка ошибок
         if(matrix[i] == NULL)
         {
-            for(int index = i; index > 0; index--)
+            for(int index = i; index > 0; index--)//удаление из памяти уже выделенных массивов
             {
                 free(matrix[index-1]);
                 matrix[index-1] = NULL;
             }
             free(matrix);
             matrix = NULL;
+            free(result);
+            result = NULL;
             fprintf(stderr, "No free memory!\n");
             exit(1);
         }
@@ -55,10 +73,6 @@ int main()
     printf("Your matrix:\n");
     OutputMatrix(matrix, m, n);
 
-
-    //выделение памяти на массив результата
-
-    result = (int*)malloc(m*n*2*sizeof(int));
 
     count = SaddlePoint(matrix, m, n, result);
     if(count == 0)
