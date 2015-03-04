@@ -17,10 +17,29 @@ int main()
 
     //выделение памяти под матрицу
     matrix = (int**)malloc(m*sizeof(int*));//под указатели
-    printf
+
+    //обработка ошибок и освобождение выделенной памяти
+    if(matrix == NULL)
+    {
+        fprintf(stderr, "No free memory!\n");
+        exit(1);
+    }
     for(i = 0; i < m; i++)
     {
+        matrix[i] = NULL;
         matrix[i] /* int* */ = (int*)malloc(n*sizeof(int));//под элементы
+        if(matrix[i] == NULL)
+        {
+            for(int index = i; index > 0; index--)
+            {
+                free(matrix[index-1]);
+                matrix[index-1] = NULL;
+            }
+            free(matrix);
+            matrix = NULL;
+            fprintf(stderr, "No free memory!\n");
+            exit(1);
+        }
     }
 
     //заполнение матрицы
@@ -39,7 +58,7 @@ int main()
 
     //выделение памяти на массив результата
 
-    result = (int*)malloc(m*n*sizeof(int));
+    result = (int*)malloc(m*n*2*sizeof(int));
 
     count = SaddlePoint(matrix, m, n, result);
     if(count == 0)
@@ -48,10 +67,10 @@ int main()
     }
     else
     {
-        printf("You have saddle point: ");
-        for(i = 0; i < count; i++)
+        printf("You have saddle point:\n");
+        for(i = 0; i < count; i+=2)
         {
-            printf("%d ", result[i]);
+            printf("%d, [%d][%d]\n",matrix[result[i]][result[i+1]], result[i], result[i+1]);
         }
     }
 
@@ -83,7 +102,7 @@ int SaddlePoint(int **matrix, int m, int n, int *result)
             {
                 for(k = 0; k < m; k++)
                 {
-                    if(k == j)
+                    if(k == i)
                     {
                         continue;
                     }
@@ -95,7 +114,8 @@ int SaddlePoint(int **matrix, int m, int n, int *result)
                 }
                 if(k == m)
                 {
-                    result[count++] = min;
+                    result[count++] = i;
+                    result[count++] = j;
                 }
             }
         }

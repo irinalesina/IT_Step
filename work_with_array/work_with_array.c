@@ -28,6 +28,7 @@ void OutputArray(int* array, int size_of_array)
 
 void FillArray(int* array, int size_of_array)
 {
+    srand(time(NULL));
     char answer;
     printf("Do you want to fill array? y/n\n");
     scanf(" %c", &answer);
@@ -38,7 +39,7 @@ void FillArray(int* array, int size_of_array)
     }
     else
     {
-        srand(time(NULL));
+
         int i;
         for(i = 0; i <= size_of_array; i++)
         {

@@ -1,4 +1,6 @@
 #include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 static int array[100][100], i, j;
 

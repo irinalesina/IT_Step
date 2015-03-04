@@ -54,9 +54,8 @@ void SortingInsertion(int array[], int size_of_array)
 }
 
 
-void SortingMerge(int array[], int from, int to)
+void SortingMerge(static int array[], int from, int to)
 {
-    int i, j, array_r, array_l;
     if(from < to)
     {
         SortingMerge(array, from, (from + to)/2);
