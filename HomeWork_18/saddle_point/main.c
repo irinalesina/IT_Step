@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <time.h>
 
 
 int SaddlePoint(int **matrix, int m, int n, int *result);
@@ -14,14 +15,15 @@ int main()
     printf("Emter size of matrix: ");
     scanf("%d%d", &m, &n);
 
-    //выделение памяти под матрицу
-    matrix = (int**)malloc(m*sizeof(int*));//под указатели
+    //РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РјР°С‚СЂРёС†Сѓ
+    matrix = (int**)malloc(m*sizeof(int*));//РїРѕРґ СѓРєР°Р·Р°С‚РµР»Рё
+    printf
     for(i = 0; i < m; i++)
     {
-        matrix[i] /* int* */ = (int*)malloc(n*sizeof(int));//под элементы
+        matrix[i] /* int* */ = (int*)malloc(n*sizeof(int));//РїРѕРґ СЌР»РµРјРµРЅС‚С‹
     }
 
-    //заполнение матрицы
+    //Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†С‹
     for(i = 0; i < m; i++)
     {
         for(j = 0; j < n; j++)
@@ -30,12 +32,12 @@ int main()
         }
     }
 
-    //вывод матрицы на экран
+    //РІС‹РІРѕРґ РјР°С‚СЂРёС†С‹ РЅР° СЌРєСЂР°РЅ
     printf("Your matrix:\n");
     OutputMatrix(matrix, m, n);
 
 
-    //выделение памяти на массив результата
+    //РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РЅР° РјР°СЃСЃРёРІ СЂРµР·СѓР»СЊС‚Р°С‚Р°
 
     result = (int*)malloc(m*n*sizeof(int));
 
@@ -53,16 +55,16 @@ int main()
         }
     }
 
-    //освобождение памяти
+    //РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё
     for(i = 0; i < m; i++)
     {
-        free(matrix[i]);//под элементы
+        free(matrix[i]);//РїРѕРґ СЌР»РµРјРµРЅС‚С‹
         matrix[i] = NULL;
     }
-    free(matrix);//под указатели
+    free(matrix);//РїРѕРґ СѓРєР°Р·Р°С‚РµР»Рё
     matrix = NULL;
 
-    //освобождение памяти под результат
+    //РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚
     free(result);
     result = NULL;
 
