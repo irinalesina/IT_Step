@@ -9,7 +9,7 @@ int main()
     FILE *file;
     char str[N] = {0};
 
-    file = fopen("../test.txt", "r");
+    file = fopen("../test(4).txt", "r");
     if(file == NULL)
     {
         printf("Error open file!\n");
