@@ -1,0 +1,6 @@
+#ifndef REPLACE_THE_WORD_STARS_H_INCLUDED
+#define REPLACE_THE_WORD_STARS_H_INCLUDED
+
+char* ReplaceWordOfStar(char *str);
+
+#endif // REPLACE_THE_WORD_STARS_H_INCLUDED
