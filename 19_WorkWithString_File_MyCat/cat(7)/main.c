@@ -23,10 +23,11 @@ int main(int argc, char* argv[])
     if(exit_ != -1)
     {
         FILE *file;
+        int additive = 1;
         for(i = 1; i < argc; i++)
         {
             file = fopen(argv[i], "r");
-            if(file == NULL)
+            if(file == NULL)//если не файл, а просто текст
             {
                 if(exit_ == 0)
                 {
@@ -34,10 +35,10 @@ int main(int argc, char* argv[])
                 }
                 else if(i != exit_)
                 {
-                    printf("%d. %s\n", i, argv[i]);
+                    printf("%d. %s\n", additive++, argv[i]);
                 }
             }
-            else
+            else//если файл
             {
                 fseek(file, 0, SEEK_END);
                 int size_of_file = ftell(file) + 1;
@@ -51,13 +52,43 @@ int main(int argc, char* argv[])
                 memset(text, 0, size_of_file);
                 fread(text, sizeof(char), size_of_file, file);
                 fclose(file);
-                if(exit_ == 0)
+                int exit_text = 1;
+                char *space_pointer, *prev_pointer = text;
+                while(exit_text)//обработка текста на строки
                 {
-                    printf("%s\n", text);
-                }
-                else
-                {
-                    printf("%d. %s\n", i, text);
+                    char *j;
+                    space_pointer = strchr(prev_pointer, '\n');
+                    if(space_pointer == NULL)
+                    {
+                        exit_text = 0;
+                        space_pointer = strchr(prev_pointer, '\0');
+                    }
+                    if(exit_ == 0)//вывод без нумерации
+                    {
+                        for(j = prev_pointer; j <= space_pointer; j++)
+                        {
+                            printf("%c", *j);
+                        }
+                    }
+                    else//вывод с нумерацией
+                    {
+                        for(j = prev_pointer; j <= space_pointer; j++)
+                        {
+                            if(j == prev_pointer)
+                            {
+                                printf("%d. %c", additive++, *j);
+                            }
+                            else
+                            {
+                                printf("%c", *j);
+                            }
+                        }
+                    }
+                    if(*space_pointer == '\0')
+                    {
+                        printf("\n");
+                    }
+                    prev_pointer = space_pointer + 1;
                 }
                 free(text);
                 text = NULL;
