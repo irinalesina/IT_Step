@@ -1,6 +1,6 @@
+#include "sorting_array.h"
 
-
-void SortingSelection(int array[], int size_of_array)
+void SortingSelection(int *array, int size_of_array)
 {
     int helper, i, j;
     for(i = 0; i < size_of_array; i++)
@@ -18,7 +18,7 @@ void SortingSelection(int array[], int size_of_array)
 }
 
 
-void SortingBuble(int array[], int size_of_array)
+void SortingBuble(int *array, int size_of_array)
 {
     int helper, i, j;
     for(i = 0; i < size_of_array; i++)
@@ -36,7 +36,7 @@ void SortingBuble(int array[], int size_of_array)
 }
 
 
-void SortingInsertion(int array[], int size_of_array)
+void SortingInsertion(int *array, int size_of_array)
 {
     int helper, i, j;
     for(i = 1; i < size_of_array; i++)
@@ -54,31 +54,73 @@ void SortingInsertion(int array[], int size_of_array)
 }
 
 
-void SortingMerge(static int array[], int from, int to)
+void SortingMerge(int *array, int left, int right)
 {
-    if(from < to)
+    if(left < right)
     {
-        SortingMerge(array, from, (from + to)/2);
-        SortingMerge(array, (from + to)/2+1, to);
+        SortingMerge(array, left, (left + right)/2);
+        SortingMerge(array, (left + right)/2+1, right);
+        int array_left[N], array_right[N], i, j;
+        for(i = left, j = 0; i <= (left+right)/2; i++, j++)
+        {
+            array_left[j] = array[i];
+        }
+        for(i = (left+right)/2 +1, j = 0; i <= right; i++, j++)
+        {
+            array_right[j] = array[i];
+        }
+        int k;
+        i = left, j = 0, k = 0;
+        while(j < (left+right)/2 + 1 && k < right - (left+right)/2)
+        {
+            if(array_left[j] < array_right[k])
+            {
+                array[i] = array_left[j];
+                ++j;
+            }
+            else
+            {
+                array[i] = array_right[k];
+                ++k;
+            }
+            ++i;
+        }
+        while(j < (left+right)/2 - left + 1)
+        {
+            array[i] = array_left[j];
+            ++j;
+            ++i;
+        }
+        while(k < right - (left+right)/2)
+        {
+            array[i] = array_right[k];
+            ++k;
+            ++i;
+        }
     }
 
+}
 
+int Partition(int *array, int left, int right);
+
+void SortingQuick(int *array, int left, int right)
+{
+    if(left < right)
+    {
+        int index = Partition(array, left, right);
+        SortingQuick(array, left, index - 1);
+        SortingQuick(array, index + 1, right);
+    }
 }
 
 
-void SortingQuick(int array[], int size_of_array)
+void SortingHeap(int *array, int size_of_array)
 {
 
 }
 
 
-void SortingHeap(int array[], int size_of_array)
-{
-
-}
-
-
-int CheckSortingArray(int array[], int size_of_array)
+int CheckSorting(int *array, int size_of_array)
 {
     int i;
     for(i = 0; i < size_of_array-1; i++)
@@ -91,3 +133,26 @@ int CheckSortingArray(int array[], int size_of_array)
     return -1;
 }
 
+int Partition(int *array, int left, int right)
+{
+    int i = left;
+    while(array[i] < array[right])
+    {
+        i++;
+    }
+    int temp, j;
+    for(j = i; j < right; j++)
+    {
+        if(array[j] < array[right])
+        {
+            temp = array[j];
+            array[j] = array[i];
+            array[i] = temp;
+            i++;
+        }
+    }
+    temp = array[i];
+    array[i] = array[right];
+    array[right] = temp;
+    return i;
+}

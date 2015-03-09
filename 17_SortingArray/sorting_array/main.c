@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "..\..\work_with_array\work_with_array.h"
+#include "../../work_with_array/work_with_array.h"
 #include "sorting_array.h"
 
 #define N 100
@@ -13,7 +13,8 @@ int main()
     FillArray(array, size_of_array);
     OutputArray(array, size_of_array);
     printf("\n\n");
-    SortingInsertion(array, size_of_array);
+    SortingMerge(array, 0, size_of_array - 1);
     OutputArray(array, size_of_array);
+
     return 0;
 }

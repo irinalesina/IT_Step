@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
 static int i;
 void InputArray(int* array, int size_of_array)
