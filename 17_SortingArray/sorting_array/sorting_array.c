@@ -101,8 +101,8 @@ void SortingMerge(int *array, int left, int right)
 
 }
 
-int Partition(int *array, int left, int right);
 
+int Partition(int *array, int left, int right);
 void SortingQuick(int *array, int left, int right)
 {
     if(left < right)
@@ -113,10 +113,21 @@ void SortingQuick(int *array, int left, int right)
     }
 }
 
-
-void SortingHeap(int *array, int size_of_array)
+void BuildHeap(int *array, int size);
+void RepairHeap(int *array, int index, int size);
+void SortingHeap(int *array, int left, int right)
 {
-
+    int size = right - left + 1;
+    BuildHeap(array, size);
+    int i;
+    for(i = size - 1; i >= 1; i--)
+    {
+        int helper = array[0];
+        array[0] = array[i];
+        array[i] = helper;
+        --size;
+        RepairHeap(array, 0, size);
+    }
 }
 
 
@@ -132,6 +143,7 @@ int CheckSorting(int *array, int size_of_array)
     }
     return -1;
 }
+
 
 int Partition(int *array, int left, int right)
 {
@@ -156,3 +168,35 @@ int Partition(int *array, int left, int right)
     array[right] = temp;
     return i;
 }
+
+
+void RepairHeap(int *array, int index, int size)//рабочая функция
+{
+    int left_child = 2 * index + 1, right_child = 2 * index + 2, parent = index;
+    if(left_child < size && array[left_child] > array[parent])
+    {
+        parent = left_child;
+    }
+    if(right_child < size && array[right_child] > array[parent])
+    {
+        parent = right_child;
+    }
+    if(parent != index)
+    {
+        int helper = array[index];
+        array[index] = array[parent];
+        array[parent] = helper;
+        RepairHeap(array, parent, size);
+    }
+}
+
+void BuildHeap(int *array, int size)
+{
+    int i;
+    for(i = size / 2; i >=0; i--)
+    {
+        RepairHeap(array, i, size);
+    }
+}
+
+

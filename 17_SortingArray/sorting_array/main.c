@@ -13,7 +13,7 @@ int main()
     FillArray(array, size_of_array);
     OutputArray(array, size_of_array);
     printf("\n\n");
-    SortingMerge(array, 0, size_of_array - 1);
+    SortingHeap(array, 0, size_of_array - 1);
     OutputArray(array, size_of_array);
 
     return 0;
