@@ -71,7 +71,7 @@ void SortingMerge(int *array, int left, int right)
         }
         int k;
         i = left, j = 0, k = 0;
-        while(j < (left+right)/2 + 1 && k < right - (left+right)/2)
+        while(j <= (left+right)/2 - left && k <= right - (left+right)/2 - 1)
         {
             if(array_left[j] < array_right[k])
             {
@@ -85,13 +85,13 @@ void SortingMerge(int *array, int left, int right)
             }
             ++i;
         }
-        while(j < (left+right)/2 - left + 1)
+        while(j <= (left+right)/2 - left)
         {
             array[i] = array_left[j];
             ++j;
             ++i;
         }
-        while(k < right - (left+right)/2)
+        while(k <= right - (left+right)/2 - 1)
         {
             array[i] = array_right[k];
             ++k;
