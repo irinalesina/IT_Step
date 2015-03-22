@@ -1,8 +1,11 @@
 #include "f_time.h"
 
+void ConvertTheTime(Time *time);
+
 void InputTime(Time *time)
 {
     scanf("%d%d%d", &time->hours, &time->minutes, &time->seconds);
+    ConvertTheTime(time);
 }
 
 
@@ -15,7 +18,21 @@ void OutputTime(Time *time)
 void AddSeconds(Time *time, int seconds)
 {
     time->seconds += seconds;
-    if(time->seconds > 59)
+    ConvertTheTime(time);
+}
+
+
+int DifferenceBetweenTheTime(Time *time_1, Time *time_2)
+{
+    int difference;
+    difference = (time_1->hours - time_2->hours)*3600 + (time_1->minutes - time_2->minutes)*60 + (time_1->seconds - time_2->seconds);
+    return difference;
+}
+
+
+void ConvertTheTime(Time *time)
+{
+     if(time->seconds > 59)
     {
         time->minutes += time->seconds / 60;
         time->seconds %= 60;
@@ -29,12 +46,4 @@ void AddSeconds(Time *time, int seconds)
     {
         time->hours = 0;
     }
-}
-
-
-int DifferenceBetweenTheTime(Time *time_1, Time *time_2)
-{
-    int difference;
-    difference = (time_1->hours - time_2->hours)*3600 + (time_1->minutes - time_2->minutes)*60 + (time_1->seconds - time_2->seconds);
-    return difference;
 }
