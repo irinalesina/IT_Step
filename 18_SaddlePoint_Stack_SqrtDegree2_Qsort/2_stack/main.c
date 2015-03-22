@@ -1,45 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include "stack_f.h"
+#include "my_stack.h"
 
 int main()
 {
     int arr[7] = {1, 2, 3, 4, 5, 6, 7};
-    if(IsEmpty())
-    {
-        printf("Stack is empty\n");
-    }
-    else
-    {
-        printf("Stack is not empty\n");
-    }
+    UniversalStack test;
+    Initialize(&test, sizeof(int), 10);
     int i;
     for(i = 0; i < 7; i++)
     {
-        Push(arr[i]);
-    }
-    if(IsEmpty())
-    {
-        printf("Stack is empty\n");
-    }
-    else
-    {
-        printf("Stack is not empty\n");
+        Push(&test, &arr[i]);
     }
     int element;
-    if(OnTop(&element))
+    OnTop(&test, &element);
+    printf("Element on top = %d\n", element);
+    while(!IsEmpty(&test))
     {
-        printf("On top = %d \n", element);
+        Pop(&test, &element);
+        printf("%d ", element);
     }
-    else
-    {
-        printf("Stack is empty\n");
-    }
+    Uninitialize(&test);
 
-    while(!IsEmpty())
-    {
-        printf("%d ", Pop());
-    }
     return 0;
 }

@@ -34,10 +34,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="stack_f.c">
+		<Unit filename="my_stack.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="stack_f.h" />
+		<Unit filename="my_stack.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
