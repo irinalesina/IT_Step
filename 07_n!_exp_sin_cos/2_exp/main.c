@@ -17,7 +17,7 @@ int main()
             adition *= i/j;
             j++;
             my_exp += adition;
-        }while(abs(adition) >= eps);
+        }while(fabs(adition) >= eps);
         double standart_exp = exp(i);
         printf("x = %5.1f | my_exp = %7.4f | exp = %7.4f | my_exp - exp = %7.4f\n", i, my_exp, standart_exp, my_exp-standart_exp);
     }
