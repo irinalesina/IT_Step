@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <SDL2/SDL.h>
+#include "../../../SDL2/include/SDL.h"
 
-int main()
+int WinMain()
 {
     //проинициализировать SDL
     if(SDL_Init(SDL_INIT_VIDEO))

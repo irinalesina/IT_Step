@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <SDL2/SDL.h>
+#include "../../../SDL2/include/SDL.h"
 #include <stdbool.h>
 #define SCREEN_WIDTH 640
 #define SCREEN_HIGHT 480
 
 
-int main()
+int WinMain()
 {
     //проинициализировать SDL
     if(SDL_Init(SDL_INIT_VIDEO))
