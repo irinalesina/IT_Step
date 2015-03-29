@@ -82,13 +82,18 @@ Fraction MathOperationFractionAndDigit(Fraction a, int b, char operation)
     {
     case '+':
         c.integer_part = a.integer_part + b;
+        c.numerator = a.numerator;
+        c.denominator = a.denominator;
         break;
     case '-':
         c.integer_part = a.integer_part - b;
+        c.numerator = a.numerator;
+        c.denominator = a.denominator;
         break;
     case '*':
         c.integer_part = a.integer_part * b;
         c.numerator = a.numerator * b;
+        c.denominator = a.denominator;
         break;
     case '/':
         c.integer_part = 0;
