@@ -25,7 +25,14 @@ void InputFraction(Fraction *a)
 
 void OutputFraction(Fraction a)
 {
-    printf("%d(%d/%d)\n", a.integer_part, a.numerator, a.denominator);
+    if(a.numerator == a.denominator)
+    {
+        printf("%d", a.integer_part + 1);
+    }
+    else
+    {
+        printf("%d(%d/%d)\n", a.integer_part, a.numerator, a.denominator);
+    }
 }
 
 
