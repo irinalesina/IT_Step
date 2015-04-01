@@ -12,9 +12,9 @@ typedef struct _Date
     int year;
 }Date;
 
-void Input(Data *data);
-void Output(Data data);
-void AddDays(Data *data, int amount_of_days);
-int DifferenceBetweenDates(Data data_1, Data data_2);
+void Input(Date *date);
+void Output(Date date);
+void AddDays(Date *date, int amount_of_days);
+long long DifferenceBetweenDates(Date date_1, Date date_2);
 
 #endif // DATE_H_INCLUDED
