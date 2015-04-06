@@ -38,8 +38,12 @@ int main()
         int i;
         for(i = 0; i < amount_of_saddle_point; i++)
         {
-            printf("%d. %d[%d, %d]", i+1, matrix[result[i]], result[i]/columns, result[i]%columns);
+            printf("%d. %d[%d, %d]", i+1, matrix[result[i]], result[i] / columns + 1, result[i] % columns + 1);
         }
     }
+    free(matrix);
+    matrix = NULL;
+    free(result);
+    result = NULL;
     return 0;
 }
