@@ -15,7 +15,7 @@ int main()
         printf("\nInstructions:\n");
         printf("0 - exit\n"
                "1 - add data in database\n"
-               "2 - output data from database\n");
+               "2 - output database\n");
         printf("What you want to do?\n");
         scanf("%d%c", &ection, &enter);
         switch(ection)
@@ -24,7 +24,7 @@ int main()
             AddData();
             break;
         case 2:
-
+            Output();
             break;
         case 3:
 

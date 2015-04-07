@@ -74,6 +74,7 @@ void AddData()
         helper = NULL;
         return;
     }
+    memset(arr_of_data, 0, element_count_in_arr*sizeof(USA));
     for(i = 0; i < element_count_in_arr - 1; i++)
     {
         arr_of_data[i] = helper[i];
@@ -91,6 +92,26 @@ void AddData()
     printf("population in state: ");
     scanf("%d", &arr_of_data[element_count_in_arr - 1].population);
 }
+
+
+void Output()
+{
+    if(!element_count_in_arr)
+    {
+        printf("Database is empty!\n");
+        return;
+    }
+    int i;
+    printf("|      state       |      capital     |    area, km^2    |    population    |\n");
+    for(i = 0; i < element_count_in_arr; i++)
+    {
+        printf("|%18s|", arr_of_data[i].state);
+        printf("%18s|", arr_of_data[i].capital);
+        printf("%18d|", arr_of_data[i].area);
+        printf("%18d|", arr_of_data[i].population);
+    }
+}
+
 
 
 

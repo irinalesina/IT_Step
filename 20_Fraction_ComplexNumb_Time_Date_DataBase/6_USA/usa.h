@@ -9,8 +9,8 @@ typedef struct _USA
 {
     char state[20];
     char capital[20];
-    int population;
     int area;
+    int population;
 }USA;
 
 
