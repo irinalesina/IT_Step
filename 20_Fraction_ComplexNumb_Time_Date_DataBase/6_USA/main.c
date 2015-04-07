@@ -14,7 +14,7 @@ int main()
     {
         printf("\nInstructions:\n");
         printf("0 - exit\n"
-               "1 - add data in database\n"
+               "1 - add data\n"
                "2 - output database\n");
         printf("What you want to do?\n");
         scanf("%d%c", &ection, &enter);

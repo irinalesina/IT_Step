@@ -108,7 +108,7 @@ void Output()
         printf("|%18s|", arr_of_data[i].state);
         printf("%18s|", arr_of_data[i].capital);
         printf("%18d|", arr_of_data[i].area);
-        printf("%18d|", arr_of_data[i].population);
+        printf("%18d|\n", arr_of_data[i].population);
     }
 }
 
