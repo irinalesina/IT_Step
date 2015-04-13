@@ -40,7 +40,7 @@ int LoadData()
 }
 
 
-int SaveData()
+void SaveData()
 {
     FILE *file;
     file = fopen(file_name, "wb");
@@ -102,15 +102,35 @@ void Output()
         return;
     }
     int i;
-    printf("|      state       |      capital     |    area, km^2    |    population    |\n");
+    printf("| p |     state       |      capital     |   area, km^2   |    population    |\n\n");
     for(i = 0; i < element_count_in_arr; i++)
     {
-        printf("|%18s|", arr_of_data[i].state);
+        printf("|%3d|", i+1);
+        printf("%17s|", arr_of_data[i].state);
         printf("%18s|", arr_of_data[i].capital);
-        printf("%18d|", arr_of_data[i].area);
-        printf("%18d|\n", arr_of_data[i].population);
+        printf("%16d|", arr_of_data[i].area);
+        printf("%18d|\n\n", arr_of_data[i].population);
     }
 }
+
+
+int DeleteData(int position)
+{
+    if(position > element_count_in_arr)
+        return 0;
+    int i;
+    for(i = position - 1; i < element_count_in_arr - 1; i++)
+    {
+        /*arr_of_data[i].area = arr_of_data[i+1].area;
+        strcpy(arr_of_data[i].capital, arr_of_data[i+1].capital);
+        arr_of_data[i].population = arr_of_data[i+1].population;
+        strcpy(arr_of_data[i].state, arr_of_data[i+1].state);*/
+        arr_of_data[i] = arr_of_data[i+1];//cool
+    }
+    --element_count_in_arr;
+    return 1;
+}
+
 
 
 

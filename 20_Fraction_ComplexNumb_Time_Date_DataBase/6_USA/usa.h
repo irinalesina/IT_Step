@@ -15,9 +15,9 @@ typedef struct _USA
 
 
 void Output();
-int SaveData();
+void SaveData();
 int LoadData();
-void DeleteData();
+int DeleteData(int position);
 void AddData();
 
 

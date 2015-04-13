@@ -5,20 +5,21 @@
 int main()
 {
     printf("Hello. This database states of America\n\n");
-    printf("Current database was loaded.\n"
-           "When you exit, modified database will be saved\n\n");
+    printf("Current database was loaded.\n");
+
     LoadData();
-    int ection;
+    int action;
     char enter;
     do
     {
         printf("\nInstructions:\n");
         printf("0 - exit\n"
                "1 - add data\n"
-               "2 - output database\n");
-        printf("What you want to do?\n>> ");
-        scanf("%d%c", &ection, &enter);
-        switch(ection)
+               "2 - output database\n"
+               "3 - delete data\n");
+        printf("What do you want to do?\n>> ");
+        scanf("%d%c", &action, &enter);
+        switch(action)
         {
         case 1:
             AddData();
@@ -27,17 +28,29 @@ int main()
             Output();
             break;
         case 3:
-
-            break;
+            {
+                int position;
+                printf("Enter position of element in table:\n>> ");
+                scanf("%d", &position);
+                if(DeleteData(position))
+                    printf("Data deleted!\n");
+                else
+                    printf("You enter invalid position!\n");
+                break;
+            }
         case 4:
 
             break;
+        default:
+            printf("You enter invalid command!\n");
         }
-    }while(ection);
+    }while(action);
+
     printf("Do you want to save a changes?\n"
            "1-yes\n0-no\n>> ");
-    scanf("%c%c", &ection, &enter);
-    if(ection)
+    scanf("%c%c", &action, &enter);
+    if(action)
         SaveData();
+
     return 0;
 }
