@@ -8,7 +8,7 @@ int main()
     printf("Current database was loaded.\n"
            "When you exit, modified database will be saved\n\n");
     LoadData();
-    int ection;
+    int action;
     char enter;
     do
     {
@@ -17,8 +17,8 @@ int main()
                "1 - add data\n"
                "2 - output database\n");
         printf("What you want to do?\n>> ");
-        scanf("%d%c", &ection, &enter);
-        switch(ection)
+        scanf("%d%c", &action, &enter);
+        switch(action)
         {
         case 1:
             AddData();
@@ -33,7 +33,7 @@ int main()
 
             break;
         }
-    }while(ection);
+    }while(action);
     SaveData();
     return 0;
 }

@@ -1,4 +1,7 @@
 #include "usa.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 const char *file_name = "USA.bin";
 USA *arr_of_data = NULL;
@@ -17,9 +20,9 @@ int LoadData()
 
     fseek(file, 0, SEEK_END);
     element_count_in_arr = ftell(file) / sizeof(USA);
-    fseek(file, 0, SEEK_SET);
-
-    if(element_count_in_arr == NULL)
+    //fseek(file, 0, SEEK_SET);
+    rewind(file);
+    if(element_count_in_arr == 0)
     {
         printf("File is empty!\n");
         fclose(file);
@@ -40,7 +43,7 @@ int LoadData()
 }
 
 
-int SaveData()
+void SaveData()
 {
     FILE *file;
     file = fopen(file_name, "wb");
@@ -48,6 +51,7 @@ int SaveData()
     fclose(file);
     free(arr_of_data);
     arr_of_data = NULL;
+
 }
 
 
