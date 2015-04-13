@@ -1,6 +1,8 @@
 #ifndef USA_H_INCLUDED
 #define USA_H_INCLUDED
-
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 
 typedef struct _USA
@@ -13,7 +15,7 @@ typedef struct _USA
 
 
 void Output();
-void SaveData();
+int SaveData();
 int LoadData();
 void DeleteData();
 void AddData();
