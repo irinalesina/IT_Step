@@ -19,7 +19,7 @@ int LoadData()
     element_count_in_arr = ftell(file) / sizeof(USA);
     fseek(file, 0, SEEK_SET);
 
-    if(element_count_in_arr == NULL)
+    if(element_count_in_arr == 0)
     {
         printf("File is empty!\n");
         fclose(file);
@@ -109,7 +109,7 @@ void Output()
         printf("%17s|", arr_of_data[i].state);
         printf("%18s|", arr_of_data[i].capital);
         printf("%16d|", arr_of_data[i].area);
-        printf("%18d|\n\n", arr_of_data[i].population);
+        printf("%18d|\n", arr_of_data[i].population);
     }
 }
 
@@ -132,6 +132,40 @@ int DeleteData(int position)
 }
 
 
+
+int CompareInt(const void *a, const void *b);
+int CompareString(const void *a, const void *b);
+int copy_dierction;
+
+void SortDatabase(int field, int direction)
+{
+    copy_dierction = direction;
+    if(field <= 2)
+        qsort(arr_of_data, element_count_in_arr, sizeof(USA), CompareString);
+    else
+        qsort(arr_of_data, element_count_in_arr, sizeof(USA), CompareInt);
+
+}
+
+
+int CompareString(const void *a, const void *b)
+{
+    const char *x = (char*)a, *y = (char*)b;
+    if(copy_dierction)
+        return strcmp(x, y);
+    else
+        return (-1)*strcmp(x, y);
+}
+
+
+int CompareInt(const void *a, const void *b)
+{
+    int x = *((int*)a), y = *((int *)b);
+    if(copy_dierction)
+        return (x - y);
+    else
+        return (y - x);
+}
 
 
 

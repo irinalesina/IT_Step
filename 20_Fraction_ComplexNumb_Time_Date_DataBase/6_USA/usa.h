@@ -19,6 +19,6 @@ void SaveData();
 int LoadData();
 int DeleteData(int position);
 void AddData();
-
+void SortDatabase(int field, int direction);
 
 #endif // USA_H_INCLUDED

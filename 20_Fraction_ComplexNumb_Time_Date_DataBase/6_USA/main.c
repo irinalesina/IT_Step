@@ -16,7 +16,8 @@ int main()
         printf("0 - exit\n"
                "1 - add data\n"
                "2 - output database\n"
-               "3 - delete data\n");
+               "3 - delete data\n"
+               "4 - sort database\n");
         printf("What do you want to do?\n>> ");
         scanf("%d%c", &action, &enter);
         switch(action)
@@ -39,8 +40,21 @@ int main()
                 break;
             }
         case 4:
-
-            break;
+            {
+                int field, direction;
+                printf("Enter Number of field for sorting:\n"
+                       "1 - state\n"
+                       "2 - capital\n"
+                       "3 - area\n"
+                       "4 - population\n>> ");
+                scanf("%d", &field);
+                printf("Enter direction for sorting\n "
+                       "1 - up\n"
+                       "-1 - down\n>> ");
+                scanf("%d", &direction);
+                SortDatabase(field, direction);
+                break;
+            }
         default:
             printf("You enter invalid command!\n");
         }
@@ -48,7 +62,7 @@ int main()
 
     printf("Do you want to save a changes?\n"
            "1-yes\n0-no\n>> ");
-    scanf("%c%c", &action, &enter);
+    scanf("%d%c", &action, &enter);
     if(action)
         SaveData();
 
