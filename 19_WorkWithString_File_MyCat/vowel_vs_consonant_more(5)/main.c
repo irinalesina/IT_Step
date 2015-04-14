@@ -19,6 +19,7 @@ int main()
     if(text == NULL)
     {
         printf("Memory allocation failed!\n");
+        fclose(file);
         exit(-1);
     }
     memset(text, 0, size_of_file);//зануление всех элементов массива
