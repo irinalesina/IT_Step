@@ -4,7 +4,7 @@
 
 int main()
 {
-    printf("Hello. This database states of America\n\n");
+    printf("Hello. This database states of America.\n\n");
     printf("Current database was loaded.\n");
 
     LoadData();
@@ -17,8 +17,9 @@ int main()
                "1 - add data\n"
                "2 - output database\n"
                "3 - delete data\n"
-               "4 - sort database\n");
-        printf("What do you want to do?\n>> ");
+               "4 - sort database\n"
+               "5 - save changes\n");
+        printf(">> ");
         scanf("%d%c", &action, &enter);
         switch(action)
         {
@@ -50,21 +51,22 @@ int main()
                 scanf("%d", &field);
                 printf("Enter direction for sorting\n "
                        "1 - up\n"
-                       "-1 - down\n>> ");
+                       "0 - down\n>> ");
                 scanf("%d", &direction);
-                SortDatabase(field, direction);
+
+                if(field > 4 || field < 1 || direction > 1 || direction < 0)
+                    printf("Error. You enter invalid command!\n");
+                else
+                    SortDatabase(field, direction);
                 break;
             }
+        case 5:
+            SaveData();
+            break;
         default:
             printf("You enter invalid command!\n");
         }
     }while(action);
-
-    printf("Do you want to save a changes?\n"
-           "1-yes\n0-no\n>> ");
-    scanf("%d%c", &action, &enter);
-    if(action)
-        SaveData();
 
     return 0;
 }

@@ -135,37 +135,41 @@ int DeleteData(int position)
 
 int CompareInt(const void *a, const void *b);
 int CompareString(const void *a, const void *b);
-int copy_dierction;
+int copy_dierction, copy_field;
 
 void SortDatabase(int field, int direction)
 {
     copy_dierction = direction;
-    if(field <= 2)
+    copy_field = field;
+    if(field == 1 || field == 2)
         qsort(arr_of_data, element_count_in_arr, sizeof(USA), CompareString);
-    else
+    else if(field == 3 || field == 4)
         qsort(arr_of_data, element_count_in_arr, sizeof(USA), CompareInt);
-
+    Output();
 }
 
 
 int CompareString(const void *a, const void *b)
 {
-    const char *x = (char*)a, *y = (char*)b;
-    if(copy_dierction)
-        return strcmp(x, y);
+    USA *x = (USA*)a, *y = (USA*)b;
+    if(copy_field == 1)
+        return copy_dierction ? (strcmp(x->state, y->state)) : (strcmp(y->state, x->state));
     else
-        return (-1)*strcmp(x, y);
+        return copy_dierction ? (strcmp(x->capital, y->capital)) : (strcmp(y->capital, x->capital));
 }
 
 
 int CompareInt(const void *a, const void *b)
 {
-    int x = *((int*)a), y = *((int *)b);
-    if(copy_dierction)
-        return (x - y);
+    USA *x = (USA*)a, *y = (USA*)b;
+    if(copy_field == 3)
+        return copy_dierction ? (x->area - y->area) : (y->area - x->area);
     else
-        return (y - x);
+        return copy_dierction ? (x->population - y->population) : (y->population - x->population);
 }
+
+
+
 
 
 
