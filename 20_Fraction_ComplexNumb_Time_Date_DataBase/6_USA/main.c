@@ -49,7 +49,7 @@ int main()
                        "3 - area\n"
                        "4 - population\n>> ");
                 scanf("%d", &field);
-                printf("Enter direction for sorting\n "
+                printf("Enter direction for sorting\n"
                        "1 - up\n"
                        "0 - down\n>> ");
                 scanf("%d", &direction);
@@ -64,7 +64,8 @@ int main()
             SaveData();
             break;
         default:
-            printf("You enter invalid command!\n");
+            if(action)
+                printf("You enter invalid command!\n");
         }
     }while(action);
 
