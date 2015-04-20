@@ -22,7 +22,7 @@ int main()
     int error;
     struct sockaddr_in peer;
     peer.sin_family = AF_INET;
-    peer.sin_port = htons(7500); //7500 - порт, по которому будем общаться
+    peer.sin_port = htons(7501); //7500 - порт, по которому будем общаться
 
     char server_ip[16] = {0};
     printf("Enter IP: ");
@@ -41,6 +41,7 @@ int main()
     char buf[MAX_STR] = {0};
     do
     {
+        memset(buf, 0, strlen(buf));
         write(1, "<< ", 3);
         fgets(buf, MAX_STR, stdin);
 

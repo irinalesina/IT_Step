@@ -20,7 +20,7 @@ int main()
     int error;
     struct sockaddr_in local;
     local.sin_family = AF_INET;
-    local.sin_port = htons(7502);
+    local.sin_port = htons(7500);
     local.sin_addr.s_addr = htonl(INADDR_ANY);
 
     error = bind(listenSocket, (struct sockaddr *)&local, sizeof(local));
@@ -49,6 +49,7 @@ int main()
 
     do
     {
+        memset(buf, 0, strlen(buf));
         error = read(aSocket, buf, MAX_STR);
         if(error <= 0)
         {
