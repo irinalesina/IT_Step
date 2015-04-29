@@ -1,10 +1,10 @@
 
 
 
-int Calculating(char argv[], int *result)
+int Calculating(char polynomial[], int *result)
 {
     int priority = 0, i, size_of_str;
-    size_of_str = strlen(argv);
+    size_of_str = strlen(polynomial);
     UniversalStack *numbers, *operations;
 
     //memory allocation
@@ -14,7 +14,7 @@ int Calculating(char argv[], int *result)
     char operation[] = "()+-*/^";
     for(i = 0; i < size_of_str; i++)
     {
-        if(strchr(operation, argv[i])
+        if(strchr(operation, polynomial[i])
         {
 
         }
