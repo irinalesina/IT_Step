@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     printf("Hello!\nThis is calculator!\nFor exit enter 'exit'");
-    int i = 1, cheking;
+    int i = 1;
     double result;
     while(!strstr(argv[i], "exit"))
     {

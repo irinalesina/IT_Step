@@ -31,6 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../../18_SaddlePoint_Stack_SqrtDegree2_Qsort/2_stack/my_stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="calculating.c">
 			<Option compilerVar="CC" />
 		</Unit>
