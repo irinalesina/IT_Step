@@ -43,3 +43,4 @@ int main()
     return 0;
 }
 
+//https://vk.com/doc15295425_387231768?hash=2161e6cf4f5e8c5000&dl=ee2020f301c8a40f78
