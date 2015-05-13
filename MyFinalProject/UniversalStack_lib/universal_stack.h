@@ -1,5 +1,6 @@
 #ifndef STACK_F_H_INCLUDED
 #define STACK_F_H_INCLUDED
+#include <stdlib.h>
 
 typedef struct _UniversalStack
 {
