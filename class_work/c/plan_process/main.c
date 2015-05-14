@@ -1,98 +1,82 @@
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sched.h>  //многопроцессорность
 #include <sys/types.h>
 #include <signal.h>
 #include <wait.h>
+#include <sched.h>
 
-#define TIME 5000
+int treatSig = 1;
 
-int read_file = 1;
-
-void sig_handler(int snum)
+void handler(int snum) //функция-обработчик
 {
-    read_file = 0;
+    treatSig = 0;
 }
-
 
 int main()
 {
-    //канал связи
-    int pf[2];
+    int pf[2];  //создаем канал (pipe)
     if(pipe(pf) == -1)
     {
-        fprintf (stderr, "pipe() error\n");
+        fprintf(stderr, "Can't create a pipe.\n");
         return 1;
     }
 
-    //исходный процесс
-    pid_t p = fork();
-    if(p == -1)
+    pid_t p1 = fork();
+    if(p1 == -1)
     {
-        fprintf(stderr, "Error, fork don't created!\n");
+        fprintf(stderr, "Can't create P1 process.\n");
         return 1;
     }
-    else if(p == 0)
+    else if(!p1) //дочерний процесс
     {
-        //сын
-        pid_t p1 = fork();
-        if(p1 == -1)
+        pid_t p2 = fork();
+        if(p2 == -1)
         {
-            fprintf(stderr, "Error, fork don't created!\n");
+            fprintf(stderr, "Can't create P2 process");
             return 1;
         }
-        else if(p1 == 0)//внук
+        else if(!p2) //дочерний процесс (родитель - P1)
         {
-            //обработка сигнала
             struct sigaction act;
             sigemptyset(&act.sa_mask);
-            act.sa_handler = &sig_handler;
+            act.sa_handler = &handler;
             act.sa_flags = 0;
-            if(sigaction (SIGQUIT, &act, NULL) == -1)
+
+            if(sigaction(SIGQUIT, &act, NULL) == -1)
             {
-                fprintf (stderr, "sigaction() error\n");
+                fprintf(stderr, "Can't settle sigaction.\n");
                 return 1;
             }
 
-            FILE *file;
             char symbol;
-            fopen("test.txt", "r");
-
-            while(read_file && !feof(file))
+            FILE *filepoiner = NULL;
+            filepoiner = fopen("test.txt", "r");
+            close(pf[0]);
+            while(treatSig && !feof(filepoiner))
             {
-                symbol = fgetc(file);
-                write(pf[0], &symbol, sizeof(char));
+                symbol = fgetc(filepoiner);
+                write(pf[1], &symbol, sizeof(symbol));
             }
-            symbol = '\0';
-            write(pf[0], &symbol, sizeof(char));
-
-
-            fclose(file);
-            close(pf[0]);        }
-        else//обработка p1
+            fclose(filepoiner);
+        }
+        else //родительский процесс (P1)
         {
-            sleep(TIME);
-            kill(p1, SIGQUIT);
+            usleep(15000
+                   );
+            kill(p2, SIGQUIT);
         }
     }
     else
     {
-        wait(NULL);
+        waitpid(p1, NULL, 0);
         char symbol;
-
-        do
-        {
-            read(pf[1], &symbol, sizeof(char));
+        close(pf[1]);
+        while(read(pf[0], &symbol, sizeof(symbol)) > 0)
             printf("%c", symbol);
-        }while(symbol != '\0');
+
+        close(pf[0]);
+        close(pf[1]);
     }
-
-
-
-
-
     return 0;
 }
-
-//https://vk.com/doc15295425_387231768?hash=2161e6cf4f5e8c5000&dl=ee2020f301c8a40f78
