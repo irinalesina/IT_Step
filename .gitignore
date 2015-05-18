@@ -6,7 +6,6 @@ obj/
 *.save
 *.depend
 *.layout*
-*.sln
 *.sdf
 *.v12.suo
 *.tlog
@@ -16,3 +15,4 @@ obj/
 *.vcxproj
 *.vcxproj.filters
 *.pdb
+*.ilk
