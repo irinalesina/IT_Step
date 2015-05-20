@@ -7,10 +7,29 @@ private:
 	char *s;
 	int length;
 public:
-	void PrintStr();
-	const char *Find(const char *substr);
+	void PrintStr() const; //этот метод не изменяет строку
+	const char *Find(const char *substr) const;
 	int Plus(const char *source);
-	const char *cstr(); //доступ для чтения
+
+
+	//classwork
+	String PlusNewStr(const String &source) const;
+	void UpReg();
+	bool FirstNChar(int n, String &result); 
+	bool EndNChar(int n, String &result); 
+	bool Substr(int n, int position, String &result);
+	bool DeleteSpace(String &result);
+
+
+
+
+	const char *c_str() const{//доступ для чтения, inline-метод
+		return s;
+	} 
+
+	//перегрузка оператора присваивания
+	void operator=(const String &sourse);
+
 	//ctor
 	String();
 	String(const char *p);
@@ -22,3 +41,8 @@ public:
 
 void PrintStr(String str);
 
+
+
+inline int sqr(int x){
+	return x*x;
+}

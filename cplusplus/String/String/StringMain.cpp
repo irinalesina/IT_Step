@@ -3,17 +3,44 @@
 
 
 int main(){
-	String a('*', 7), b = "Hello";
+	const String a('*', 7);
+	String b = "Hello";
+	String c; //вызовется конструктор копирования
+	/*
+	b.FirstNChar(2, c);
+	c.PrintStr();
+	b.EndNChar(3, c);
+	c.PrintStr();
+	
+
+	b.Substr(3, 2, c);
+	c.PrintStr();
+
+	b.DeleteSpace(c);
+	*/
+	b.DeleteSpace(c);
+	c.PrintStr();
+
+	//b = a; //присваивание
+	/*
+	b.UpReg();
 	b.PrintStr();
+	*/
+	//c = b.PlusNewStr(a);
+	//c.PrintStr();
+
+	/*
+	b.Plus(" world!");
+
 	a.PrintStr();
-	PrintStr(b);
 
 	if (b.Find("lo")){
 		std::cout << "lo is found in Hello!" << std::endl;
 	}
 
-	b.Plus(" world!");
+
 	b.PrintStr();
+	*/
 
 	std::getc(stdin);
 	return 0;
